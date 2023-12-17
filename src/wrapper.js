@@ -1,10 +1,10 @@
 const NodeRSA = require("node-rsa");
 
-const BASE_URL = 'https://developer.api.walmart.com/';
+const BASE_URL = 'https://developer.api.walmart.com';
 const MAX = 200;
 
 const products = async (headerData, numProducts, category) => {
-    let url = BASE_URL + `api-proxy/service/affil/product/v2/paginated/items?category=${category}&count=${String(getNumToRetrieve(0, numProducts))}`
+    let url = BASE_URL + `/api-proxy/service/affil/product/v2/paginated/items?category=${category}&count=${String(getNumToRetrieve(0, numProducts))}`
 
     let products = []
     do {
@@ -14,7 +14,7 @@ const products = async (headerData, numProducts, category) => {
 
         if (!res.nextPageExist) break;
         url = BASE_URL + res.nextPage.replace(/&count=([0-9]+)&/g, `&count=${String(getNumToRetrieve(products.length, numProducts))}&`);
-    } while (products.length < numProducts);
+    } while (!numProducts || (products.length < numProducts));
 
     return products;    
 }
@@ -71,12 +71,6 @@ const generateHeaders = (headerData) => {
 
     const signature_enc = (new NodeRSA(privateKey, "pkcs8", options={encryptionScheme: { hash: 'sha256'}})).sign(sortedHashString).toString("base64");
 
-    console.log({
-        "WM_SEC.AUTH_SIGNATURE": signature_enc,
-        "WM_CONSUMER.INTIMESTAMP": timestamp,
-        "WM_CONSUMER.ID": consumerId,
-        "WM_SEC.KEY_VERSION": keyVer,
-    })
     return {
         "WM_SEC.AUTH_SIGNATURE": signature_enc,
         "WM_CONSUMER.INTIMESTAMP": timestamp,
