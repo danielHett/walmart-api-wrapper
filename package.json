@@ -1,0 +1,27 @@
+{
+  "name": "walmart-api-wrapper",
+  "version": "1.0.0",
+  "description": "A wrapper for the Walmart Affiliate API",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/mocha/bin/_mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danielHett/walmart-api-wrapper.git"
+  },
+  "author": "Daniel Hettinger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danielHett/walmart-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/danielHett/walmart-api-wrapper#readme",
+  "devDependencies": {
+    "chai": "^4.3.10",
+    "mocha": "^10.2.0",
+    "sinon": "^17.0.1"
+  },
+  "dependencies": {
+    "node-rsa": "^1.1.1"
+  }
+}
