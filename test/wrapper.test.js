@@ -48,7 +48,7 @@ describe('generateHeaders', () => {
         fetchStub.onCall(0).returns({
             json: async () => {
                 return {
-                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259',
+                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259&soldByWmt=true',
                     nextPageExist: true,
                     items: Array(200).fill(0)
                 };
@@ -57,7 +57,7 @@ describe('generateHeaders', () => {
         fetchStub.onCall(1).returns({
             json: async () => {
                 return {
-                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=55&lastDoc=1671148&remainingHits=3161259',
+                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=55&lastDoc=1671148&remainingHits=3161259&soldByWmt=true',
                     nextPageExist: true,
                     items: Array(200).fill(0)
                 };
@@ -78,9 +78,9 @@ describe('generateHeaders', () => {
         expect(actual).to.deep.equal(expected);
 
         sinon.assert.callCount(fetchStub, 3);
-        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200')
-        expect(fetchStub.getCall(1).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&lastDoc=1671148&remainingHits=3161259')
-        expect(fetchStub.getCall(2).firstArg).to.equal( 'https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&lastDoc=1671148&remainingHits=3161259')
+        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&soldByWmt=true')
+        expect(fetchStub.getCall(1).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&lastDoc=1671148&remainingHits=3161259&soldByWmt=true')
+        expect(fetchStub.getCall(2).firstArg).to.equal( 'https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&lastDoc=1671148&remainingHits=3161259&soldByWmt=true')
     });
 
     it('returns correct number of results when numProducts is less than MAX', async () => {
@@ -88,7 +88,7 @@ describe('generateHeaders', () => {
         fetchStub.onCall(0).returns({
             json: async () => {
                 return {
-                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259',
+                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259&soldByWmt=true',
                     nextPageExist: true,
                     items: Array(34).fill(0)
                 };
@@ -100,7 +100,7 @@ describe('generateHeaders', () => {
         expect(actual).to.deep.equal(expected);
 
         sinon.assert.callCount(fetchStub, 1);
-        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=34')
+        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=34&soldByWmt=true')
     });
 
     it('returns correct number of results when numProducts is more than MAX', async () => {
@@ -108,7 +108,7 @@ describe('generateHeaders', () => {
         fetchStub.onCall(0).returns({
             json: async () => {
                 return {
-                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259',
+                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259&soldByWmt=true',
                     nextPageExist: true,
                     items: Array(200).fill(0)
                 };
@@ -117,7 +117,7 @@ describe('generateHeaders', () => {
         fetchStub.onCall(1).returns({
             json: async () => {
                 return {
-                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259',
+                    nextPage: '/api-proxy/service/affil/product/v2/paginated/items?category=0&count=10&lastDoc=1671148&remainingHits=3161259&soldByWmt=true',
                     nextPageExist: true,
                     items: Array(144).fill(0)
                 };
@@ -129,8 +129,8 @@ describe('generateHeaders', () => {
         expect(actual).to.deep.equal(expected);
 
         sinon.assert.callCount(fetchStub, 2);
-        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200')
-        expect(fetchStub.getCall(1).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=144&lastDoc=1671148&remainingHits=3161259')
+        expect(fetchStub.getCall(0).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=200&soldByWmt=true')
+        expect(fetchStub.getCall(1).firstArg).to.equal('https://developer.api.walmart.com/api-proxy/service/affil/product/v2/paginated/items?category=0&count=144&lastDoc=1671148&remainingHits=3161259&soldByWmt=true')
     });
 });
 

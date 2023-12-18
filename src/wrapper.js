@@ -4,7 +4,7 @@ const BASE_URL = 'https://developer.api.walmart.com';
 const MAX = 200;
 
 const products = async (headerData, numProducts, category) => {
-    let url = BASE_URL + `/api-proxy/service/affil/product/v2/paginated/items?category=${category}&count=${String(getNumToRetrieve(0, numProducts))}`
+    let url = BASE_URL + `/api-proxy/service/affil/product/v2/paginated/items?category=${category}&count=${String(getNumToRetrieve(0, numProducts))}&soldByWmt=true`
 
     let products = []
     do {
